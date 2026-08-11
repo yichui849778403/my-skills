@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{TITLE}</title>
+<style>
+  :root {
+    --blue: #1a56db;
+    --blue-light: #e8f0fe;
+    --gray-bg: #f5f5f5;
+    --text: #333;
+    --text-secondary: #666;
+    --border: #e0e0e0;
+    --danger: #d93025;
+    --success: #188038;
+    --zebra: #fafafa;
+    --quote-bg: #fffde7;
+    --quote-line: #f9a825;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #fff;
+  }
+  h1 { color: var(--blue); font-size: 24px; border-bottom: 2px solid var(--blue); padding-bottom: 12px; margin-bottom: 8px; }
+  h2 { color: var(--blue); font-size: 18px; margin: 28px 0 12px; padding-left: 10px; border-left: 3px solid var(--blue); }
+  h3 { color: var(--blue); font-size: 15px; margin: 20px 0 8px; }
+  p { margin: 6px 0; }
+  .meta { color: var(--text-secondary); font-size: 13px; margin-bottom: 20px; }
+  .conclusion-box {
+    background: var(--blue-light); border-left: 4px solid var(--blue);
+    padding: 12px 16px; border-radius: 4px; margin: 12px 0;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  th { background: var(--blue); color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
+  td { padding: 8px 12px; border: 1px solid var(--border); }
+  tr:nth-child(even) td { background: var(--zebra); }
+  code {
+    background: var(--gray-bg); padding: 1px 6px; border-radius: 3px;
+    font-family: "Consolas", "Courier New", monospace; font-size: 13px;
+    word-break: break-all;
+  }
+  .code-block {
+    background: var(--gray-bg); padding: 12px 16px; border-radius: 4px;
+    font-family: "Consolas", "Courier New", monospace; font-size: 12px;
+    overflow-x: auto; margin: 8px 0; border: 1px solid var(--border);
+    word-break: break-all;
+  }
+  .tag-high { background: var(--danger); color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 12px; }
+  .tag-medium { background: #f39c12; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 12px; }
+  .tag-low { background: var(--success); color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 12px; }
+  .tag-pass { background: var(--success); color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 12px; }
+  .blockquote {
+    background: var(--quote-bg); border-left: 3px solid var(--quote-line);
+    padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 14px;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .footer { color: var(--text-secondary); font-size: 12px; margin-top: 32px; text-align: center; }
+  ul, ol { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<h1>{WEEKLY_NAME} — 漏洞复测报告</h1>
+<p class="meta">
+  复测日期: {RETEST_DATE} &nbsp;|&nbsp; 报告来源: {SOURCE_FILE}
+</p>
+
+<div class="conclusion-box">
+  <strong>复测结论:</strong> {OVERALL_CONCLUSION}
+</div>
+
+<h2>复测概况</h2>
+<table>
+  {OVERVIEW_TABLE_ROWS}
+</table>
+
+<h2>漏洞复测详情</h2>
+{VULN_DETAIL_SECTIONS}
+
+<hr class="divider">
+
+<h2>复测汇总</h2>
+<table>
+  <tr>
+    <th>编号</th><th>漏洞名称</th><th>原始等级</th><th>复测结果</th><th>当前状态</th>
+  </tr>
+  {SUMMARY_TABLE_ROWS}
+</table>
+
+<p class="footer">报告自动生成于 {GENERATED_TIME}</p>
+
+</body>
+</html>
