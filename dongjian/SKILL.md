@@ -2,6 +2,7 @@
 name: dongjian
 description: 读取长亭洞鉴扫描结果。用户在 Web UI 手动扫描，完成后触发此 skill 拉取漏洞列表，辅助渗透测试。
 agent_created: true
+disable-model-invocation: true
 ---
 
 # 洞鉴 — 读取扫描结果
