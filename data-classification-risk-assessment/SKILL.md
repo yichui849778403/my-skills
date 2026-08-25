@@ -2,6 +2,7 @@
 name: data-classification-risk-assessment
 description: 数据分类分级与数据安全风险评估的落地工作流。当用户需要做数据分类分级、纠正分类分级工具导出的过度分类结果、识别敏感数据、生成分类分级清单/敏感字段清单、做分级防护差距分析、编写数据安全风险评估报告时使用。触发词：数据分类分级、分类分级清单、敏感字段、数据安全风险评估、分级防护、差距分析、数据资产扫描、数据分类目录。
 agent_created: true
+disable-model-invocation: true
 ---
 
 # 数据分类分级与数据安全风险评估 工作流
