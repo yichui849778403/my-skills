@@ -1,7 +1,6 @@
 ---
 name: retest-report
-description: 漏洞复测报告生成技能。从对话历史中提取漏洞信息与复测过程，生成 MD+HTML
-  双格式复测报告。触发词：复测报告、生成复测报告、输出复测报告、漏洞复测报告。
+description: 漏洞复测报告生成技能。从对话历史中提取漏洞信息与复测过程，生成 MD+HTML 双格式复测报告。触发词：复测报告、生成复测报告、输出复测报告、漏洞复测报告。
 agent_created: true
 disable-model-invocation: true
 ---
