@@ -1,33 +1,30 @@
 @echo off
+chcp 65001 >nul
 setlocal
 REM ============================================================
 REM  One-click sync: local custom skills -> GitHub
-REM  Usage: double-click this file (needs network)
+REM  Usage: double-click this file (needs network / VPN)
+REM  Logic lives in sync_skills.py (auto-discovers local skills
+REM  marked agent_created: true and mirrors full folders).
 REM ============================================================
-set "REPO=C:\Users\84977\WorkBuddy\my-skills-sync"
-set "SRC=C:\Users\84977\.workbuddy\skills"
-set SKILLS=app-pentest data-classification-risk-assessment dongjian pentest-report ppt-notes-polish retest-report
 
-cd /d "%REPO%" || (echo [error] clone dir missing: %REPO% & pause & exit /b 1)
+set "REPO=%~dp0"
+cd /d "%REPO%" || (echo [error] cannot cd to "%REPO%" & pause & exit /b 1)
 
-git pull --ff-only 2>nul
-if errorlevel 1 echo [warn] pull failed or not needed, continue
-
-for %%s in (%SKILLS%) do (
-  if exist "%SRC%\%%s\SKILL.md" (
-    copy /Y "%SRC%\%%s\SKILL.md" "%%s\SKILL.md" >nul && echo [ok] copied %%s
-  ) else (
-    echo [skip] local missing: %%s
-  )
+set "PY="
+where python >nul 2>nul && set "PY=python"
+if not defined PY (where py >nul 2>nul && set "PY=py")
+if not defined PY (
+  echo [error] python not found in PATH
+  pause
+  exit /b 1
 )
 
-git add -A
-git diff --cached --quiet
-if errorlevel 1 (
-  git commit -m "sync skills: update to local latest"
-  git push origin main
-  if errorlevel 1 (echo [error] push failed, check network & pause & exit /b 1) else (echo [done] pushed)
-) else (
-  echo no content change, skip commit/push
-)
+%PY% "%REPO%sync_skills.py" %*
+set "RC=%errorlevel%"
+
+echo.
+if "%RC%"=="0" (echo [done]) else (echo [failed] exit code=%RC%)
+pause
 endlocal
+exit /b %RC%
