@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文PPT白描逐字稿"
+  short_description: "为中文培训PPT编写可直接照念的白描逐字稿，保留主语、指代、逻辑和呼吸节奏"
+  default_prompt: "请用 $ppt-notes-cn-plain，结合这一页和前后页内容，按白描、自然口语的风格写完整逐字稿。"
